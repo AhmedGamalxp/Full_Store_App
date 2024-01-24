@@ -14,7 +14,7 @@ class SplashController extends GetxController {
       pageController.animateToPage(currentPage,
           duration: const Duration(milliseconds: 600), curve: Curves.easeInOut);
     } else {
-      myServices.sharedPreferences.setBool('skipp splash', true);
+      myServices.sharedPreferences.setString('step', "1");
       Get.toNamed(AppRoute.loginView);
     }
   }

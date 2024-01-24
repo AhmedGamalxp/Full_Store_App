@@ -35,7 +35,7 @@ class ForgetPassView extends StatelessWidget {
                   const Gap(40),
                   Customformfield(
                     validator: (value) {
-                      return validateInput(value!, 5, 20, 'email');
+                      return validateInput(value!, 5, 30, 'email');
                     },
                     controller: forgetPassController.emailController,
                     hint: '45'.tr,

@@ -1,4 +1,4 @@
-import 'package:flutter/src/widgets/navigator.dart';
+import 'package:flutter/material.dart';
 import 'package:full_store_app/core/utils/app_router.dart';
 import 'package:full_store_app/services/services.dart';
 import 'package:get/get.dart';
@@ -9,7 +9,9 @@ class MyMiddlewalre extends GetMiddleware {
   MyServices myServices = Get.find();
   @override
   RouteSettings? redirect(String? route) {
-    if (myServices.sharedPreferences.getBool('skipp splash') == true) {
+    if (myServices.sharedPreferences.getString('step') == "2") {
+      return const RouteSettings(name: AppRoute.homeView);
+    } else if (myServices.sharedPreferences.getString('step') == "1") {
       return const RouteSettings(name: AppRoute.loginView);
     }
     return super.redirect(route);

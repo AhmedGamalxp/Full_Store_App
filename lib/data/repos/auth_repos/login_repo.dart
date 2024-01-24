@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 
 class LoginRepo {
   ApiService apiService = Get.find();
-  Future<Either<Failure, int>> login({
+  Future<Either<Failure, Map>> login({
     required String email,
     required String password,
   }) async {
@@ -18,7 +18,7 @@ class LoginRepo {
       });
       print(data);
       if (data['status'] == 'success') {
-        return right(1);
+        return right(data);
       } else {
         return left(ServerFailure(data['massage']));
       }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:full_store_app/localization/change_lang.dart';
+import 'package:full_store_app/localization/language_controller.dart';
 import 'package:get/get.dart';
 
 abstract class AppStyles {

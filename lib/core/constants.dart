@@ -5,17 +5,17 @@ import 'package:get/get.dart';
 
 List<SplashModel> splashList = [
   SplashModel(
-    image: Assets.imagesSplash_1,
+    image: Assets.imagesSplash1,
     title: '2'.tr,
     describtion: '3'.tr,
   ),
   SplashModel(
-    image: Assets.imagesSplash_2,
+    image: Assets.imagesSplash2,
     title: '4'.tr,
     describtion: '5'.tr,
   ),
   SplashModel(
-    image: Assets.imagesSplash_3,
+    image: Assets.imagesSplash3,
     title: '6'.tr,
     describtion: '7'.tr,
   ),
