@@ -9,7 +9,8 @@ class Customformfield extends StatelessWidget {
       required this.prefixIcon,
       required this.controller,
       this.validator,
-      this.obscuretext = false, this.onSuffixTap});
+      this.obscuretext = false,
+      this.onSuffixTap});
   final String hint;
   final IconData prefixIcon;
   final IconData? suffixIcon;
