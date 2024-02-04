@@ -10,9 +10,10 @@ class CustomBottn extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: 50,
       child: MaterialButton(
+          height: 50,
           color: kPrimeryColor,
+          disabledColor: kPrimeryColor,
           onPressed: onTap,
           child: Text(
             text,

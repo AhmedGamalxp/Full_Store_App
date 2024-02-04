@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
       initialBinding: MyBinding(),
       debugShowCheckedModeBanner: false,
       getPages: myRoutes,
-      // routes: myRoutes,
+
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:full_store_app/controllers/otp_controller.dart';
+import 'package:full_store_app/core/constants.dart';
 import 'package:full_store_app/core/shared/loading_widget.dart';
 import 'package:full_store_app/core/utils/app_styles.dart';
 import 'package:full_store_app/core/utils/request_state.dart';
@@ -17,7 +18,7 @@ class OtpView extends StatelessWidget {
       body: GetBuilder<OtpController>(
         builder: (controller) {
           if (controller.requestState == RequestState.loading) {
-            return CustomLoadingWidget();
+            return const CustomLoadingWidget();
           } else {
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -32,6 +33,9 @@ class OtpView extends StatelessWidget {
                   ),
                   const Gap(20),
                   Text('48'.tr,
+                      textAlign: TextAlign.center,
+                      style: AppStyles.styleMedium12),
+                  Text(controller.email.tr,
                       textAlign: TextAlign.center,
                       style: AppStyles.styleMedium12),
                   const Gap(40),
@@ -52,6 +56,18 @@ class OtpView extends StatelessWidget {
                       controller.checkCode(verificationCode);
                     }, // end onSubmit
                   ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  TextButton(
+                      onPressed: () async {
+                        await controller.resendVerifyCode();
+                      },
+                      child: Text(
+                        'Resend verify code',
+                        style: AppStyles.styleSemiBold18
+                            .copyWith(color: kPrimeryColor),
+                      )),
                 ],
               ),
             );

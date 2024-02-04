@@ -32,17 +32,22 @@ class LoginController extends GetxController {
         requestState = RequestState.failure;
         customDialog(title: 'Error', body: failure.erorrMassage);
       }, (data) {
-        myServices.sharedPreferences
-            .setString("id", '${data['data']['users_id']}');
-        myServices.sharedPreferences
-            .setString("name", data['data']['users_name']);
-        myServices.sharedPreferences
-            .setString("email", data['data']['users_email']);
-        myServices.sharedPreferences
-            .setString("phone", data['data']['users_phone']);
-        myServices.sharedPreferences.setString("step", "2");
-        requestState = RequestState.success;
-        Get.offAllNamed(AppRoute.homeView);
+        if (data['data']['users_approve'] == 1) {
+          myServices.sharedPreferences
+              .setString("id", '${data['data']['users_id']}');
+          myServices.sharedPreferences
+              .setString("name", data['data']['users_name']);
+          myServices.sharedPreferences
+              .setString("email", data['data']['users_email']);
+          myServices.sharedPreferences
+              .setString("phone", data['data']['users_phone']);
+          myServices.sharedPreferences.setString("step", "2");
+          requestState = RequestState.success;
+          Get.offAllNamed(AppRoute.mainView);
+        } else {
+          Get.toNamed(AppRoute.otpView,
+              arguments: {"email": emailController.text});
+        }
       });
       update();
     }

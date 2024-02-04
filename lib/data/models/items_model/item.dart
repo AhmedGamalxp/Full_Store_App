@@ -9,6 +9,7 @@ class ItemModel {
   int? itemsActive;
   int? itemsPrice;
   int? itemsDiscount;
+  int? favorite;
   String? itemsCreateat;
   int? itemsCategory;
   int? categoriesId;
@@ -28,6 +29,7 @@ class ItemModel {
     this.itemsActive,
     this.itemsPrice,
     this.itemsDiscount,
+    this.favorite,
     this.itemsCreateat,
     this.itemsCategory,
     this.categoriesId,
@@ -48,6 +50,7 @@ class ItemModel {
         itemsActive: json['items_active'] as int?,
         itemsPrice: json['items_price'] as int?,
         itemsDiscount: json['items_discount'] as int?,
+        favorite: json['favorite'] as int?,
         itemsCreateat: json['items_createat'] as String?,
         itemsCategory: json['items_category'] as int?,
         categoriesId: json['categories_id'] as int?,
@@ -68,6 +71,7 @@ class ItemModel {
         'items_active': itemsActive,
         'items_price': itemsPrice,
         'items_discount': itemsDiscount,
+        'favorite': favorite,
         'items_createat': itemsCreateat,
         'items_category': itemsCategory,
         'categories_id': categoriesId,

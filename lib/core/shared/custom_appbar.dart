@@ -4,8 +4,8 @@ import 'package:full_store_app/core/utils/app_assets.dart';
 import 'package:full_store_app/views/home_views/widgets/icon_bottn_with_counter.dart';
 import 'package:badges/badges.dart' as badges;
 
-class HomeViewAppBar extends StatelessWidget {
-  const HomeViewAppBar({super.key});
+class CustomAppBar extends StatelessWidget {
+  const CustomAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,17 +17,17 @@ class HomeViewAppBar extends StatelessWidget {
         bottom: 20,
         top: 40,
       ),
-      color: Colors.white.withOpacity(0.1),
+      color: Colors.white,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
-            width: MediaQuery.of(context).size.width * 0.6,
+            width: MediaQuery.of(context).size.width - 100,
             decoration: BoxDecoration(
               color: const Color(0xffF2F5F1),
               borderRadius: BorderRadius.circular(12),
             ),
-            child: TextField(
+            child: TextFormField(
               onChanged: (value) {},
               onTapOutside: (event) {
                 FocusManager.instance.primaryFocus?.unfocus();
@@ -47,7 +47,7 @@ class HomeViewAppBar extends StatelessWidget {
           ),
           badgeContent == 0
               ? IconBWithCounter(
-                  svgPicture: Assets.iconsCart,
+                  svgPicture: Assets.iconsBell,
                   onTap: () {},
                 )
               : badges.Badge(
@@ -62,14 +62,10 @@ class HomeViewAppBar extends StatelessWidget {
                     style: const TextStyle(color: Colors.white),
                   ),
                   child: IconBWithCounter(
-                    svgPicture: Assets.iconsCart,
+                    svgPicture: Assets.iconsBell,
                     onTap: () {},
                   ),
                 ),
-          IconBWithCounter(
-            svgPicture: Assets.iconsBell,
-            onTap: () {},
-          ),
         ],
       ),
     );

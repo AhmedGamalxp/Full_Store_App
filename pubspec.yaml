@@ -46,7 +46,9 @@ dependencies:
   flutter_svg: ^2.0.9
   gap: ^3.0.1
   get: ^4.6.6
+  google_nav_bar: ^5.0.6
   http: ^1.2.0
+  line_icons: ^2.0.3
   lottie: ^3.0.0
   shared_preferences: ^2.2.2
 
@@ -108,6 +110,6 @@ flutter:
   # see https://flutter.dev/custom-fonts/#from-packages
 flutter_assets:
   assets_path: assets/
-  output_path: lib/core/utils
+  output_path: lib/core/utils/
   filename: app_assets.dart
   field_prefix: null

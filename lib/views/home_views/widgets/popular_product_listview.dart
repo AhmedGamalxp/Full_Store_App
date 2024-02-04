@@ -12,7 +12,7 @@ class PopularProductsListview extends StatelessWidget {
     return GetBuilder<HomeController>(
       builder: (controller) {
         return SizedBox(
-          height: 200,
+          height: 250,
           child: ListView.separated(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               clipBehavior: Clip.none,

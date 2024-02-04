@@ -7,9 +7,11 @@ import 'package:get/get.dart';
 
 class HomeRepo {
   ApiService apiService = Get.find();
-  Future<Either<Failure, Map<String, dynamic>>> getAllData() async {
+  Future<Either<Failure, Map<String, dynamic>>> getAllData(
+      String userId) async {
     try {
-      var data = await apiService.post(link: AppLinks.homeLink, data: {});
+      var data = await apiService
+          .post(link: AppLinks.homeLink, data: {"user_id": userId});
 
       if (data['status'] == 'success') {
         return right(data);

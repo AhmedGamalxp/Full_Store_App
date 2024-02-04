@@ -35,6 +35,29 @@ class OtpController extends GetxController {
     update();
   }
 
+  resendVerifyCode() async {
+    requestState = RequestState.loading;
+    update();
+    var resulte = await otpRepo.resendVerifyCode(
+      email: email,
+    );
+
+    resulte.fold((failure) {
+      requestError = failure.erorrMassage;
+      requestState = RequestState.failure;
+      customDialog(title: 'Error', body: failure.erorrMassage);
+    }, (status) {
+      if (status == 1) {
+        requestState = RequestState.success;
+        customDialog(title: 'Success', body: 'Verify Code Sent Successfully');
+      } else {
+        requestState = RequestState.failure;
+        customDialog(title: 'Error', body: 'Unexpected Error');
+      }
+    });
+    update();
+  }
+
   @override
   void onInit() {
     email = Get.arguments['email'];

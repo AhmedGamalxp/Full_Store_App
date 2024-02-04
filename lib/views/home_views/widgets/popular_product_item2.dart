@@ -1,11 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:full_store_app/controllers/favorites_controller.dart';
 import 'package:full_store_app/core/app_links.dart';
 import 'package:full_store_app/core/constants.dart';
-import 'package:full_store_app/core/utils/app_assets.dart';
+import 'package:full_store_app/core/utils/app_router.dart';
 import 'package:full_store_app/core/utils/app_styles.dart';
 import 'package:full_store_app/data/models/items_model/item.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 
 class PopularProductItem2 extends StatelessWidget {
   const PopularProductItem2({
@@ -13,13 +15,14 @@ class PopularProductItem2 extends StatelessWidget {
     required this.item,
   });
 
-  @override
-  final bool isFavorite = true;
   final ItemModel item;
   @override
   Widget build(BuildContext context) {
+    Get.put(FavoritesController());
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Get.toNamed(AppRoute.productDetailesView, arguments: {"item": item});
+      },
       child: Container(
         width: 170,
         decoration: BoxDecoration(
@@ -37,27 +40,8 @@ class PopularProductItem2 extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                "${item.itemsName}",
-                style: AppStyles.styleSemiBold14,
-                overflow: TextOverflow.ellipsis,
-                maxLines: 1,
-              ),
-              CachedNetworkImage(
-                imageUrl: '${AppLinks.imageItemsLink}/${item.itemsImage}',
-                errorWidget: (context, url, error) => const Icon(Icons.error),
-              ),
               Row(
                 children: [
-                  Text(
-                    '\$ ${item.itemsPrice}',
-                    style: const TextStyle(
-                      fontSize: 16,
-                      color: kPrimeryColor,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const Spacer(),
                   Container(
                     decoration: BoxDecoration(
                       color: kPrimeryColor,
@@ -85,7 +69,46 @@ class PopularProductItem2 extends StatelessWidget {
                       ),
                     ),
                   ),
+                  const Spacer(),
+                  GetBuilder<FavoritesController>(
+                    builder: (controller) {
+                      return GestureDetector(
+                        child: controller.isFavorite['${item.itemsId}'] == "1"
+                            ? const Icon(
+                                Icons.favorite,
+                                color: kPrimeryColor,
+                              )
+                            : const Icon(Icons.favorite_border),
+                        onTap: () {
+                          if (controller.isFavorite['${item.itemsId}'] == "1") {
+                            controller.setFavorite('${item.itemsId}', "0");
+                            controller.removeFromFavorites('${item.itemsId}');
+                          } else {
+                            controller.setFavorite('${item.itemsId}', "1");
+                            controller.addToFavorites('${item.itemsId}');
+                          }
+                        },
+                      );
+                    },
+                  ),
                 ],
+              ),
+              Hero(
+                tag: "${item.itemsId}",
+                child: CachedNetworkImage(
+                  imageUrl: '${AppLinks.imageItemsLink}/${item.itemsImage}',
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                ),
+              ),
+              Text(
+                "${item.itemsName}",
+                style: AppStyles.styleSemiBold14,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+              ),
+              Text(
+                '\$ ${item.itemsPrice}',
+                style: AppStyles.styleSemiBold20.copyWith(color: kPrimeryColor),
               ),
             ],
           ),

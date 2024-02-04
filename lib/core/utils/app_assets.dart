@@ -57,6 +57,19 @@ class Assets {
   /// assets/icons/Cart Icon.svg
   static const String iconsCart = "assets/icons/Cart Icon.svg";
 
+  /// Assets for iconsLogoutSvgrepoCom
+  /// assets/icons/logout-svgrepo-com.svg
+  static const String iconsLogoutSvgrepoCom =
+      "assets/icons/logout-svgrepo-com.svg";
+
+  /// Assets for iconsSettings
+  /// assets/icons/Settings.svg
+  static const String iconsSettings = "assets/icons/Settings.svg";
+
+  /// Assets for iconsUserIcon
+  /// assets/icons/User-Icon.svg
+  static const String iconsUserIcon = "assets/icons/User-Icon.svg";
+
   /// Assets for imagesFacebookIcon
   /// assets/images/facebookIcon.svg
   static const String imagesFacebookIcon = "assets/images/facebookIcon.svg";
@@ -84,6 +97,10 @@ class Assets {
   /// Assets for imagesSplash3
   /// assets/images/splash_3.svg
   static const String imagesSplash3 = "assets/images/splash_3.svg";
+
+  /// Assets for lottieEmpty
+  /// assets/lottie/empty.json
+  static const String lottieEmpty = "assets/lottie/empty.json";
 
   /// Assets for lottieLoading
   /// assets/lottie/loading.json
