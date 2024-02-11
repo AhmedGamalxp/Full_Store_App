@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:full_store_app/controllers/favorites_controller.dart';
 import 'package:full_store_app/core/functions/custom_dialog.dart';
 import 'package:full_store_app/core/utils/request_state.dart';
@@ -13,8 +14,11 @@ class HomeController extends GetxController {
   RequestState? requestState;
   List<CategoryModel> categories = [];
   List<ItemModel> specialOfferItems = [];
+
   MyServices myServices = Get.find<MyServices>();
   List<ItemModel> items = [];
+  List<ItemModel> searchItems = [];
+  TextEditingController searchController = TextEditingController();
   late String requestError;
   getAllData() async {
     requestState = RequestState.loading;
@@ -41,6 +45,18 @@ class HomeController extends GetxController {
       }
       requestState = RequestState.success;
     });
+    update();
+  }
+
+  void addProductToSearchList({
+    required String searchName,
+  }) {
+    searchName.toLowerCase();
+    searchItems = items.where((element) {
+      String title = element.itemsName!.toLowerCase();
+      String price = element.itemsPrice!.toString().toLowerCase();
+      return title.contains(searchName) || price.contains(searchName);
+    }).toList();
     update();
   }
 

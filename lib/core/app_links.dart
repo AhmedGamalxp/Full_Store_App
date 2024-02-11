@@ -29,4 +29,12 @@ abstract class AppLinks {
   static const String removeFromFavoritesLink =
       "$serverLink/favorite/remove.php";
   static const String viewFavoritesLink = "$serverLink/favorite/view.php";
+// cart links
+  static const String addToCartLink = "$serverLink/cart/add.php";
+  static const String viewCartLink = "$serverLink/cart/view.php";
+  static const String removeFromCartLink = "$serverLink/cart/remove.php";
+  static const String deleteFromCartLink = "$serverLink/cart/delete.php";
+  static const String getItemCountLink = "$serverLink/cart/getitemcount.php";
+// coupon links
+  static const String checkcouponLink = "$serverLink/coupon/checkcoupon.php";
 }

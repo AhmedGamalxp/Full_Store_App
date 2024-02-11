@@ -1,51 +1,77 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:full_store_app/core/app_links.dart';
-import 'package:full_store_app/data/models/items_model/item.dart';
+import 'package:full_store_app/controllers/cart_controller.dart';
+import 'package:full_store_app/core/constants.dart';
+import 'package:full_store_app/core/shared/empty_widget.dart';
+import 'package:full_store_app/core/shared/loading_widget.dart';
+import 'package:full_store_app/core/utils/request_state.dart';
 import 'package:full_store_app/views/cart_view/widgets/cart_listview_item.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 
 class CartListView extends StatelessWidget {
   const CartListView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      padding: const EdgeInsets.symmetric(vertical: 20),
-      physics: const BouncingScrollPhysics(),
-      itemBuilder: (context, index) => Dismissible(
-        onDismissed: (direction) {},
-        key: UniqueKey(),
-        direction: DismissDirection.endToStart,
-        background: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Container(
-            decoration: BoxDecoration(
-              color: const Color(0xffffe6e6),
-              borderRadius: BorderRadius.circular(15),
-            ),
-            child: Row(
-              children: [
-                const Spacer(),
-                SvgPicture.asset(
-                  'assets/icons/Trash.svg',
-                  width: 20,
+    Get.find<CartController>();
+    return GetBuilder<CartController>(builder: (controller) {
+      if (controller.requestState == RequestState.loading) {
+        return const CustomLoadingWidget();
+      } else if (controller.requestState == RequestState.failure ||
+          controller.myCartList.isEmpty) {
+        return const CustomEmptyWidget();
+      } else {
+        return ListView.separated(
+          padding: const EdgeInsets.symmetric(vertical: 20),
+          physics: const BouncingScrollPhysics(),
+          itemBuilder: (context, index) => Dismissible(
+            onDismissed: (direction) {
+              controller
+                  .deleteFromCart('${controller.myCartList[index].itemsId}');
+            },
+            key: UniqueKey(),
+            direction: DismissDirection.endToStart,
+            background: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: const Color(0xffffe6e6),
+                  borderRadius: BorderRadius.circular(15),
                 ),
-                const Gap(20),
-              ],
+                child: const Row(
+                  children: [
+                    Spacer(),
+                    Icon(
+                      Icons.delete,
+                      color: kPrimeryColor,
+                    ),
+                    Gap(20),
+                  ],
+                ),
+              ),
             ),
+            child: CartListViewItem(
+                product: controller.myCartList[index],
+                numberOfProduct:
+                    controller.myCartList[index].itemscounttotal as int,
+                onAddTap: () async {
+                  await controller
+                      .addToCart('${controller.myCartList[index].itemsId}');
+                  controller.refreshData();
+                },
+                onRemoveTap: () async {
+                  await controller.removeFromCart(
+                      '${controller.myCartList[index].itemsId}');
+                  controller.refreshData();
+                }),
           ),
-        ),
-        child: CartListViewItem(
-          product: ItemModel(
-              itemsImage: 'laptop.png', itemsPrice: 300, itemsName: 'car'),
-          numberOfProduct: 4,
-        ),
-      ),
-      separatorBuilder: (context, index) => const SizedBox(
-        height: 10,
-      ),
-      itemCount: 4,
-    );
+          separatorBuilder: (context, index) => const SizedBox(
+            height: 10,
+          ),
+          itemCount: controller.myCartList.length,
+        );
+      }
+    });
   }
 }

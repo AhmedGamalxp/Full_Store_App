@@ -8,13 +8,15 @@ class ProfileListItem extends StatelessWidget {
   const ProfileListItem({
     super.key,
     required this.title,
-    required this.iconPass,
+    this.svgIcon,
     this.ontap,
     this.leading =
         const Icon(Icons.arrow_forward_ios_rounded, color: kTextColor),
+    this.icon,
   });
   final String title;
-  final String iconPass;
+  final String? svgIcon;
+  final IconData? icon;
   final Widget leading;
   final void Function()? ontap;
   @override
@@ -35,12 +37,19 @@ class ProfileListItem extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: SvgPicture.asset(
-                    iconPass,
-                    color: kPrimeryColor,
-                    width: 25,
-                    height: 25,
-                  ),
+                  child: svgIcon != null
+                      ? SvgPicture.asset(
+                          svgIcon as String,
+                          color: kPrimeryColor,
+                          width: 25,
+                          height: 25,
+                        )
+                      : Icon(
+                          icon,
+                          size: 30,
+                          color: kPrimeryColor,
+                          // weight: 10,
+                        ),
                 ),
                 Text(
                   title,

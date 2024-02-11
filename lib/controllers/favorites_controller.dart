@@ -1,6 +1,5 @@
 import 'package:full_store_app/core/functions/custom_dialog.dart';
 import 'package:full_store_app/core/utils/request_state.dart';
-import 'package:full_store_app/data/models/items_model/item.dart';
 import 'package:full_store_app/data/repos/favorites_repo.dart';
 import 'package:full_store_app/services/services.dart';
 import 'package:get/get.dart';

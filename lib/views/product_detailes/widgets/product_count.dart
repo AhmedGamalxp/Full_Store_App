@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:full_store_app/core/shared/rounded_btn.dart';
 
 class ProductCount extends StatelessWidget {
-  const ProductCount({super.key});
-
+  const ProductCount(
+      {super.key, this.onAddTap, this.onRemoveTap, required this.itemCount});
+  final void Function()? onAddTap;
+  final void Function()? onRemoveTap;
+  final String itemCount;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -13,13 +16,13 @@ class ProductCount extends StatelessWidget {
           height: 30,
           color: Colors.white,
           icon: Icons.add,
-          ontap: () {},
+          ontap: onAddTap,
         ),
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Text(
-            '${1}',
-            style: TextStyle(
+            itemCount,
+            style: const TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
               color: Colors.black,
@@ -31,7 +34,7 @@ class ProductCount extends StatelessWidget {
           height: 30,
           color: Colors.white,
           icon: Icons.remove,
-          ontap: () {},
+          ontap: onRemoveTap,
         ),
       ],
     );

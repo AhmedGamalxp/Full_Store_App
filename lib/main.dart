@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:full_store_app/core/constants.dart';
 import 'package:full_store_app/core/mybinding.dart';
 import 'package:full_store_app/localization/language_controller.dart';
 import 'package:full_store_app/localization/translations.dart';
@@ -21,13 +22,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     LanguageController languageController = Get.put(LanguageController());
     return GetMaterialApp(
-      theme: ThemeData(fontFamily: 'font'.tr),
+      theme: myTheme,
       locale: languageController.language,
       translations: MyTranslations(),
       initialBinding: MyBinding(),
       debugShowCheckedModeBanner: false,
       getPages: myRoutes,
-
     );
   }
 }

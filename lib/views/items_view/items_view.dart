@@ -10,24 +10,34 @@ class ItemsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(ItemsViewController());
-    return const Scaffold(
+    ItemsViewController itemsViewController = Get.put(ItemsViewController());
+    return Scaffold(
       body: Stack(
         children: [
           CustomScrollView(
             slivers: [
-              SliverToBoxAdapter(
+              const SliverToBoxAdapter(
                 child: SizedBox(height: 120),
               ),
-              SliverToBoxAdapter(
+              const SliverToBoxAdapter(
                 child: CategoriesList(),
               ),
-              SliverFillRemaining(
-                child: CategoriesItemsList(),
-              ),
+              SliverFillRemaining(child: GetBuilder<ItemsViewController>(
+                builder: (controller) {
+                  return CategoriesItemsList(
+                      categoryItems: controller.searchController.text.isNotEmpty
+                          ? controller.searchItems
+                          : controller.categoryItems);
+                },
+              )),
             ],
           ),
-          CustomAppBar(),
+          CustomAppBar(
+            controller: itemsViewController.searchController,
+            onchange: (value) {
+              itemsViewController.addProductToSearchList(searchName: value);
+            },
+          ),
         ],
       ),
     );

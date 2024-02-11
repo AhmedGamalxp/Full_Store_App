@@ -15,25 +15,26 @@ class MyFavoriteModel {
   String? itemsCreateat;
   int? itemsCategory;
   int? usersId;
+  int? itemsPriceAfterDiscount;
 
-  MyFavoriteModel({
-    this.favoritesId,
-    this.favoritesUsersid,
-    this.favoritesItemsid,
-    this.itemsId,
-    this.itemsName,
-    this.itemsNameAr,
-    this.itemsDesc,
-    this.itemsDescAr,
-    this.itemsImage,
-    this.itemsCount,
-    this.itemsActive,
-    this.itemsPrice,
-    this.itemsDiscount,
-    this.itemsCreateat,
-    this.itemsCategory,
-    this.usersId,
-  });
+  MyFavoriteModel(
+      {this.favoritesId,
+      this.favoritesUsersid,
+      this.favoritesItemsid,
+      this.itemsId,
+      this.itemsName,
+      this.itemsNameAr,
+      this.itemsDesc,
+      this.itemsDescAr,
+      this.itemsImage,
+      this.itemsCount,
+      this.itemsActive,
+      this.itemsPrice,
+      this.itemsDiscount,
+      this.itemsCreateat,
+      this.itemsCategory,
+      this.usersId,
+      this.itemsPriceAfterDiscount});
 
   factory MyFavoriteModel.fromJson(Map<String, dynamic> json) =>
       MyFavoriteModel(
@@ -53,6 +54,7 @@ class MyFavoriteModel {
         itemsCreateat: json['items_createat'] as String?,
         itemsCategory: json['items_category'] as int?,
         usersId: json['users_id'] as int?,
+        itemsPriceAfterDiscount: json['itemspriceaferdiscount'] as int?,
       );
 
   Map<String, dynamic> toJson() => {
@@ -72,5 +74,6 @@ class MyFavoriteModel {
         'items_createat': itemsCreateat,
         'items_category': itemsCategory,
         'users_id': usersId,
+        'itemspriceaferdiscount': itemsPriceAfterDiscount
       };
 }

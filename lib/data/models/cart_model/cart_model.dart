@@ -1,4 +1,9 @@
-class ItemModel {
+class CartModel {
+  int? itemspricetotal;
+  int? itemscounttotal;
+  int? cartId;
+  int? cartUsersid;
+  int? cartItemsid;
   int? itemsId;
   String? itemsName;
   String? itemsNameAr;
@@ -10,17 +15,16 @@ class ItemModel {
   int? itemsPrice;
   int? itemsPriceAfterDiscount;
   int? itemsDiscount;
-  int? favorite;
   String? itemsCreateat;
   int? itemsCategory;
-  int? categoriesId;
-  String? categoriesName;
-  String? categoriesNameAr;
-  String? categoriesImage;
-  String? categoriesCreateat;
 
-  ItemModel(
-      {this.itemsId,
+  CartModel(
+      {this.itemspricetotal,
+      this.itemscounttotal,
+      this.cartId,
+      this.cartUsersid,
+      this.cartItemsid,
+      this.itemsId,
       this.itemsName,
       this.itemsNameAr,
       this.itemsDesc,
@@ -30,17 +34,16 @@ class ItemModel {
       this.itemsActive,
       this.itemsPrice,
       this.itemsDiscount,
-      this.favorite,
       this.itemsCreateat,
       this.itemsCategory,
-      this.categoriesId,
-      this.categoriesName,
-      this.categoriesNameAr,
-      this.categoriesImage,
-      this.categoriesCreateat,
       this.itemsPriceAfterDiscount});
 
-  factory ItemModel.fromJson(Map<String, dynamic> json) => ItemModel(
+  factory CartModel.fromJson(Map<String, dynamic> json) => CartModel(
+        itemspricetotal: json['itemsprice'] as int?,
+        itemscounttotal: json['itemscount'] as int?,
+        cartId: json['cart_id'] as int?,
+        cartUsersid: json['cart_usersid'] as int?,
+        cartItemsid: json['cart_itemsid'] as int?,
         itemsId: json['items_id'] as int?,
         itemsName: json['items_name'] as String?,
         itemsNameAr: json['items_name_ar'] as String?,
@@ -50,20 +53,18 @@ class ItemModel {
         itemsCount: json['items_count'] as int?,
         itemsActive: json['items_active'] as int?,
         itemsPrice: json['items_price'] as int?,
-        itemsPriceAfterDiscount: json['itemspriceaferdiscount'] as int?,
         itemsDiscount: json['items_discount'] as int?,
-        favorite: json['favorite'] as int?,
         itemsCreateat: json['items_createat'] as String?,
         itemsCategory: json['items_category'] as int?,
-        categoriesId: json['categories_id'] as int?,
-        categoriesName: json['categories_name'] as String?,
-        categoriesNameAr: json['categories_name_ar'] as String?,
-        categoriesImage: json['categories_image'] as String?,
-        categoriesCreateat: json['categories_createat'] as String?,
+        itemsPriceAfterDiscount: json['itemspriceaferdiscount'] as int?,
       );
 
   Map<String, dynamic> toJson() => {
-        'itemspriceaferdiscount': itemsPriceAfterDiscount,
+        'itemsprice': itemspricetotal,
+        'itemscount': itemscounttotal,
+        'cart_id': cartId,
+        'cart_usersid': cartUsersid,
+        'cart_itemsid': cartItemsid,
         'items_id': itemsId,
         'items_name': itemsName,
         'items_name_ar': itemsNameAr,
@@ -74,13 +75,8 @@ class ItemModel {
         'items_active': itemsActive,
         'items_price': itemsPrice,
         'items_discount': itemsDiscount,
-        'favorite': favorite,
         'items_createat': itemsCreateat,
         'items_category': itemsCategory,
-        'categories_id': categoriesId,
-        'categories_name': categoriesName,
-        'categories_name_ar': categoriesNameAr,
-        'categories_image': categoriesImage,
-        'categories_createat': categoriesCreateat,
+        'itemspriceaferdiscount': itemsPriceAfterDiscount,
       };
 }

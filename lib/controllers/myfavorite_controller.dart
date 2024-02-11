@@ -1,5 +1,5 @@
+import 'package:flutter/material.dart';
 import 'package:full_store_app/controllers/favorites_controller.dart';
-import 'package:full_store_app/core/functions/custom_dialog.dart';
 import 'package:full_store_app/core/utils/request_state.dart';
 import 'package:full_store_app/data/models/my_favorite/my_favorite.dart';
 import 'package:full_store_app/data/repos/myfavorite_repo.dart';
@@ -10,7 +10,10 @@ class MyFavoritesController extends GetxController {
   MyFavoritesRepo myFavoritesRepo = Get.put(MyFavoritesRepo());
   MyServices myServices = Get.find<MyServices>();
   FavoritesController favoritesController = Get.find<FavoritesController>();
+  TextEditingController searchController = TextEditingController();
   List<MyFavoriteModel> myFavorites = [];
+  List<MyFavoriteModel> searchItems = [];
+
   RequestState? requestState;
 
   late String requestError;
@@ -41,6 +44,19 @@ class MyFavoritesController extends GetxController {
     myFavorites.removeWhere((element) => '${element.itemsId}' == itemId);
     favoritesController.setFavorite(itemId, "0");
 
+    update();
+  }
+
+  void addProductToSearchList({
+    required String searchName,
+  }) {
+    searchItems.clear();
+    searchName.toLowerCase();
+    searchItems = myFavorites.where((element) {
+      String title = element.itemsName!.toLowerCase();
+      String price = element.itemsPrice!.toString().toLowerCase();
+      return title.contains(searchName) || price.contains(searchName);
+    }).toList();
     update();
   }
 

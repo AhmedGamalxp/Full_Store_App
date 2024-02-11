@@ -86,6 +86,14 @@ class Assets {
   /// assets/images/laptop.png
   static const String imagesLaptop = "assets/images/laptop.png";
 
+  /// Assets for imagesSale
+  /// assets/images/sale.png
+  static const String imagesSale = "assets/images/sale.png";
+
+  /// Assets for imagesSaleTag
+  /// assets/images/sale-tag.png
+  static const String imagesSaleTag = "assets/images/sale-tag.png";
+
   /// Assets for imagesSplash1
   /// assets/images/splash_1.svg
   static const String imagesSplash1 = "assets/images/splash_1.svg";

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:full_store_app/controllers/main_view_controller.dart';
 import 'package:full_store_app/core/constants.dart';
 import 'package:full_store_app/core/utils/app_styles.dart';
+import 'package:get/get.dart';
 
 class AddToCartSection extends StatelessWidget {
   const AddToCartSection({
@@ -9,6 +11,7 @@ class AddToCartSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    MainViewController mainViewController = Get.find<MainViewController>();
     return Container(
       width: double.infinity,
       decoration: const BoxDecoration(
@@ -26,9 +29,12 @@ class AddToCartSection extends StatelessWidget {
             height: 50,
             child: MaterialButton(
                 color: kPrimeryColor,
-                onPressed: () {},
+                onPressed: () async {
+                  await mainViewController.onTabChange(2);
+                  Get.back();
+                },
                 child: const Text(
-                  'Add To Cart',
+                  'Go To Cart',
                   style: AppStyles.styleSemiBold20,
                 )),
           ),

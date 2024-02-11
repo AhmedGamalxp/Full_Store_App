@@ -5,8 +5,9 @@ import 'package:full_store_app/views/home_views/widgets/icon_bottn_with_counter.
 import 'package:badges/badges.dart' as badges;
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({super.key});
-
+  const CustomAppBar({super.key, this.onchange, required this.controller});
+  final TextEditingController controller;
+  final void Function(String)? onchange;
   @override
   Widget build(BuildContext context) {
     int badgeContent = 1;
@@ -28,7 +29,8 @@ class CustomAppBar extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
             ),
             child: TextFormField(
-              onChanged: (value) {},
+              controller: controller,
+              onChanged: onchange,
               onTapOutside: (event) {
                 FocusManager.instance.primaryFocus?.unfocus();
               },

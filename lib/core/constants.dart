@@ -20,6 +20,9 @@ List<SplashModel> splashList = [
     describtion: '7'.tr,
   ),
 ];
+ThemeData myTheme = ThemeData(
+  fontFamily: 'font'.tr,
+);
 const Color kPrimeryColor = Color(0xffF83758);
 const kSecondaryColor = Color(0xFF979797);
 const kTextColor = Color(0xFF757575);

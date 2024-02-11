@@ -18,6 +18,8 @@ class ItemsViewController extends GetxController {
   late ScrollController categoriesScrollController;
   MyServices myServices = Get.find<MyServices>();
   List<ItemModel> categoryItems = [];
+  List<ItemModel> searchItems = [];
+  TextEditingController searchController = TextEditingController();
 
   changeCategory(int index) {
     if (currentCat != index) {
@@ -49,6 +51,18 @@ class ItemsViewController extends GetxController {
       }
       requestState = RequestState.success;
     });
+    update();
+  }
+
+  void addProductToSearchList({
+    required String searchName,
+  }) {
+    searchName.toLowerCase();
+    searchItems = categoryItems.where((element) {
+      String title = element.itemsName!.toLowerCase();
+      String price = element.itemsPrice!.toString().toLowerCase();
+      return title.contains(searchName) || price.contains(searchName);
+    }).toList();
     update();
   }
 

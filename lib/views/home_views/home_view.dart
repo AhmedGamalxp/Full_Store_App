@@ -6,6 +6,7 @@ import 'package:full_store_app/core/utils/request_state.dart';
 import 'package:full_store_app/views/home_views/widgets/categories.dart';
 import 'package:full_store_app/views/home_views/widgets/discount_banner.dart';
 import 'package:full_store_app/views/home_views/widgets/popular_product_listview.dart';
+import 'package:full_store_app/views/home_views/widgets/search_list.dart';
 import 'package:full_store_app/views/home_views/widgets/section_title.dart';
 import 'package:full_store_app/views/home_views/widgets/special_offer_listview.dart';
 import 'package:gap/gap.dart';
@@ -28,24 +29,31 @@ class HomeView extends StatelessWidget {
           builder: (controller) {
             return controller.requestState == RequestState.loading
                 ? const CustomLoadingWidget()
-                : const Stack(
+                : Stack(
                     children: [
-                      SingleChildScrollView(
-                        child: Column(
-                          children: [
-                            SizedBox(height: 110),
-                            DiscountBanner(),
-                            Gap(20),
-                            Categories(),
-                            SectionTiTle(title: 'Special Offer'),
-                            SpecialOfferListView(),
-                            SectionTiTle(title: 'Popular Product'),
-                            PopularProductsListview(),
-                            SizedBox(height: 110),
-                          ],
-                        ),
+                      controller.searchController.text.isNotEmpty
+                          ? const SearchList()
+                          : const SingleChildScrollView(
+                              child: Column(
+                                children: [
+                                  SizedBox(height: 110),
+                                  DiscountBanner(),
+                                  Gap(20),
+                                  Categories(),
+                                  SectionTiTle(title: 'Special Offer'),
+                                  SpecialOfferListView(),
+                                  SectionTiTle(title: 'Popular Product'),
+                                  PopularProductsListview(),
+                                  SizedBox(height: 110),
+                                ],
+                              ),
+                            ),
+                      CustomAppBar(
+                        onchange: (value) {
+                          controller.addProductToSearchList(searchName: value);
+                        },
+                        controller: controller.searchController,
                       ),
-                      CustomAppBar(),
                     ],
                   );
           },

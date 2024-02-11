@@ -1,4 +1,5 @@
 import 'package:full_store_app/core/middleware/mymiddleware.dart';
+import 'package:full_store_app/views/address_views/address_view.dart';
 import 'package:full_store_app/views/auth_views/forget_password_view.dart';
 import 'package:full_store_app/views/auth_views/login_view.dart';
 import 'package:full_store_app/views/auth_views/otp_view.dart';
@@ -6,6 +7,7 @@ import 'package:full_store_app/views/auth_views/reset_pass_otp_view.dart';
 import 'package:full_store_app/views/auth_views/reset_password_view.dart';
 import 'package:full_store_app/views/auth_views/signup_view.dart';
 import 'package:full_store_app/views/auth_views/success_view.dart';
+import 'package:full_store_app/views/cart_view/cart_view.dart';
 import 'package:full_store_app/views/favorite_views/favorite_view.dart';
 import 'package:full_store_app/views/home_views/home_view.dart';
 import 'package:full_store_app/views/main_view.dart';
@@ -32,6 +34,8 @@ class AppRoute {
   static const String productDetailesView = "/ProductDetailesView";
   static const String favoriteView = "/FavoriteView";
   static const String profileView = "/ProfileView";
+  static const String cartView = "/cartView";
+  static const String addressView = "/addressView";
   static const String myTest = "/mytest";
 }
 
@@ -55,7 +59,9 @@ List<GetPage<dynamic>> myRoutes = [
   GetPage(name: AppRoute.mainView, page: () => const MainView()),
   GetPage(name: AppRoute.itemsView, page: () => const ItemsView()),
   GetPage(name: AppRoute.favoriteView, page: () => const FavoriteView()),
+  GetPage(name: AppRoute.cartView, page: () => const CartView()),
   GetPage(name: AppRoute.profileView, page: () => const ProfileView()),
+  GetPage(name: AppRoute.addressView, page: () => const AddressView()),
   GetPage(
       name: AppRoute.productDetailesView,
       page: () => const ProductDetailesView()),

@@ -1,23 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:full_store_app/controllers/favorites_controller.dart';
 import 'package:full_store_app/controllers/myfavorite_controller.dart';
 import 'package:full_store_app/core/constants.dart';
 import 'package:full_store_app/core/shared/empty_widget.dart';
 import 'package:full_store_app/core/shared/loading_widget.dart';
 import 'package:full_store_app/core/utils/request_state.dart';
+import 'package:full_store_app/data/models/my_favorite/my_favorite.dart';
 import 'package:full_store_app/views/favorite_views/myfavorite_list_item.dart';
-import 'package:full_store_app/views/home_views/widgets/popular_product_item2.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 
 class MyFavoriteViewList extends StatelessWidget {
-  const MyFavoriteViewList({super.key});
-
+  const MyFavoriteViewList({super.key, required this.myFavorites});
+  final List<MyFavoriteModel> myFavorites;
   @override
   Widget build(BuildContext context) {
-    Get.lazyPut(() => MyFavoritesController(), fenix: true);
-
+    Get.find<MyFavoritesController>();
     return GetBuilder<MyFavoritesController>(
       builder: (controller) {
         if (controller.requestState == RequestState.loading) {
@@ -34,8 +31,8 @@ class MyFavoriteViewList extends StatelessWidget {
               itemBuilder: (context, index) {
                 return Dismissible(
                   onDismissed: (direction) {
-                    controller.deleteFromMyFavorites(
-                        '${controller.myFavorites[index].itemsId}');
+                    controller
+                        .deleteFromMyFavorites('${myFavorites[index].itemsId}');
                   },
                   key: UniqueKey(),
                   direction: DismissDirection.endToStart,
@@ -56,7 +53,7 @@ class MyFavoriteViewList extends StatelessWidget {
                     ),
                   ),
                   child: MyFavoriteListItem(
-                    product: controller.myFavorites[index],
+                    product: myFavorites[index],
                   ),
                 );
               },
@@ -65,7 +62,7 @@ class MyFavoriteViewList extends StatelessWidget {
                   height: 10,
                 );
               },
-              itemCount: controller.myFavorites.length,
+              itemCount: myFavorites.length,
             ),
           );
         }
