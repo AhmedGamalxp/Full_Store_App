@@ -42,6 +42,9 @@ class LoginController extends GetxController {
           myServices.sharedPreferences
               .setString("phone", data['data']['users_phone']);
           myServices.sharedPreferences.setString("step", "2");
+          String userId = myServices.sharedPreferences.getString("id")!;
+          FirebaseMessaging.instance.subscribeToTopic("users");
+          FirebaseMessaging.instance.subscribeToTopic("users$userId");
           requestState = RequestState.success;
           Get.offAllNamed(AppRoute.mainView);
         } else {

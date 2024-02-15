@@ -6,13 +6,13 @@ class Customformfield extends StatelessWidget {
       {super.key,
       required this.hint,
       this.suffixIcon,
-      required this.prefixIcon,
+      this.prefixIcon,
       required this.controller,
       this.validator,
       this.obscuretext = false,
       this.onSuffixTap});
   final String hint;
-  final IconData prefixIcon;
+  final IconData? prefixIcon;
   final IconData? suffixIcon;
   final bool obscuretext;
   final TextEditingController controller;

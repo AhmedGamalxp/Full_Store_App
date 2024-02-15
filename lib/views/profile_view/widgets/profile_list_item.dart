@@ -27,7 +27,7 @@ class ProfileListItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           onTap: ontap,
           child: Container(
-            height: 60,
+            height: 50,
             width: double.infinity,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),

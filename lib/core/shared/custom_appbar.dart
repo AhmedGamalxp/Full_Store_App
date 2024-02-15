@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:full_store_app/core/constants.dart';
 import 'package:full_store_app/core/utils/app_assets.dart';
+import 'package:full_store_app/core/utils/app_router.dart';
 import 'package:full_store_app/views/home_views/widgets/icon_bottn_with_counter.dart';
 import 'package:badges/badges.dart' as badges;
+import 'package:get/get.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({super.key, this.onchange, required this.controller});
@@ -10,7 +12,7 @@ class CustomAppBar extends StatelessWidget {
   final void Function(String)? onchange;
   @override
   Widget build(BuildContext context) {
-    int badgeContent = 1;
+    int badgeContent = 0;
     return Container(
       padding: const EdgeInsets.only(
         left: 20,
@@ -50,7 +52,9 @@ class CustomAppBar extends StatelessWidget {
           badgeContent == 0
               ? IconBWithCounter(
                   svgPicture: Assets.iconsBell,
-                  onTap: () {},
+                  onTap: () {
+                    Get.toNamed(AppRoute.notificationView);
+                  },
                 )
               : badges.Badge(
                   position: badges.BadgePosition.topEnd(top: -5, end: -3),
@@ -65,7 +69,9 @@ class CustomAppBar extends StatelessWidget {
                   ),
                   child: IconBWithCounter(
                     svgPicture: Assets.iconsBell,
-                    onTap: () {},
+                    onTap: () {
+                      Get.toNamed(AppRoute.notificationView);
+                    },
                   ),
                 ),
         ],

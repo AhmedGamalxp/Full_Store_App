@@ -17,19 +17,24 @@ class ProfilePicture extends StatelessWidget {
             radius: 50,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(50),
-              child: CachedNetworkImage(
-                imageUrl: '',
-                errorWidget: (context, url, error) => const Icon(
-                  Icons.person_2_outlined,
-                  color: kPrimeryColor,
-                  size: 50,
-                ),
-                placeholder: (context, url) => const Icon(
-                  Icons.person_2_outlined,
-                  color: kPrimeryColor,
-                  size: 50,
-                ),
+              child: const Icon(
+                Icons.person_2_outlined,
+                color: kPrimeryColor,
+                size: 50,
               ),
+              // CachedNetworkImage(
+              //   imageUrl: '',
+              //   errorWidget: (context, url, error) => const Icon(
+              //     Icons.person_2_outlined,
+              //     color: kPrimeryColor,
+              //     size: 50,
+              //   ),
+              //   placeholder: (context, url) => const Icon(
+              //     Icons.person_2_outlined,
+              //     color: kPrimeryColor,
+              //     size: 50,
+              //   ),
+              // ),
             ),
           ),
           Positioned(

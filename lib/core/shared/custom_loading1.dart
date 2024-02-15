@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:full_store_app/core/utils/app_assets.dart';
 import 'package:lottie/lottie.dart';
 
-class CustomLoadingWidget extends StatelessWidget {
-  const CustomLoadingWidget({super.key});
+class CustomLoadingWidget1 extends StatelessWidget {
+  const CustomLoadingWidget1({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +11,9 @@ class CustomLoadingWidget extends StatelessWidget {
       height: MediaQuery.of(context).size.height,
       child: Padding(
         padding: const EdgeInsets.all(100),
-        child: LottieBuilder.asset(Assets.lottieLoading),
+        child: LottieBuilder.asset(
+          Assets.lottieLoading,
+        ),
       ),
     );
   }

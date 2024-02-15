@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:full_store_app/core/functions/fcmconfig.dart';
 import 'package:full_store_app/services/services.dart';
 import 'package:get/get.dart';
 
@@ -13,6 +14,8 @@ class LanguageController extends GetxController {
 
   @override
   void onInit() {
+    requestPermissionNotifications();
+    fcmConfig();
     String? sharedPrefLocale = myServices.sharedPreferences.getString("lang");
     if (sharedPrefLocale == "ar") {
       language = const Locale("ar");

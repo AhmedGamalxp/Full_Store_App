@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:full_store_app/controllers/home_controller.dart';
 import 'package:full_store_app/core/functions/eixt_app_alert.dart';
-import 'package:full_store_app/core/shared/loading_widget.dart';
+import 'package:full_store_app/core/shared/custom_loading1.dart';
 import 'package:full_store_app/core/utils/request_state.dart';
 import 'package:full_store_app/views/home_views/widgets/categories.dart';
 import 'package:full_store_app/views/home_views/widgets/discount_banner.dart';
@@ -28,23 +28,29 @@ class HomeView extends StatelessWidget {
         child: GetBuilder<HomeController>(
           builder: (controller) {
             return controller.requestState == RequestState.loading
-                ? const CustomLoadingWidget()
+                ? const CustomLoadingWidget1()
                 : Stack(
                     children: [
                       controller.searchController.text.isNotEmpty
                           ? const SearchList()
-                          : const SingleChildScrollView(
+                          : SingleChildScrollView(
                               child: Column(
                                 children: [
-                                  SizedBox(height: 110),
-                                  DiscountBanner(),
-                                  Gap(20),
-                                  Categories(),
-                                  SectionTiTle(title: 'Special Offer'),
-                                  SpecialOfferListView(),
-                                  SectionTiTle(title: 'Popular Product'),
-                                  PopularProductsListview(),
-                                  SizedBox(height: 110),
+                                  const SizedBox(height: 110),
+                                  const DiscountBanner(),
+                                  const Gap(20),
+                                  const Categories(),
+                                  SectionTiTle(
+                                    title: 'Special Offer',
+                                    ontap: () {},
+                                  ),
+                                  const SpecialOfferListView(),
+                                  SectionTiTle(
+                                    title: 'Popular Product',
+                                    ontap: () {},
+                                  ),
+                                  const PopularProductsListview(),
+                                  const SizedBox(height: 110),
                                 ],
                               ),
                             ),

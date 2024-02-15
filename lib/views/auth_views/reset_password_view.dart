@@ -3,7 +3,7 @@ import 'package:full_store_app/controllers/reset_pass_controller.dart';
 import 'package:full_store_app/core/functions/validate_formfield.dart';
 import 'package:full_store_app/core/shared/custom_botton.dart';
 import 'package:full_store_app/core/shared/custom_formfiled.dart';
-import 'package:full_store_app/core/shared/loading_widget.dart';
+import 'package:full_store_app/core/shared/custom_loading1.dart';
 import 'package:full_store_app/core/utils/app_styles.dart';
 import 'package:full_store_app/core/utils/request_state.dart';
 import 'package:gap/gap.dart';
@@ -23,7 +23,7 @@ class ResetPassword extends StatelessWidget {
           child: GetBuilder<ResetPassController>(
             builder: (controller) {
               if (controller.requestState == RequestState.loading) {
-                return const CustomLoadingWidget();
+                return const CustomLoadingWidget1();
               } else {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

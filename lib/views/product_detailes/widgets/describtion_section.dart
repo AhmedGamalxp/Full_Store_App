@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:full_store_app/controllers/product_detailes_controller.dart';
 import 'package:full_store_app/core/constants.dart';
-import 'package:full_store_app/core/shared/loading_widget.dart';
+import 'package:full_store_app/core/shared/custom_loading1.dart';
 import 'package:full_store_app/core/utils/app_styles.dart';
 import 'package:full_store_app/core/utils/request_state.dart';
 import 'package:full_store_app/data/models/items_model/item.dart';
@@ -21,7 +21,7 @@ class DescribtionSection extends StatelessWidget {
     return GetBuilder<ProductDetailesController>(
       builder: (controller) {
         return controller.requestState == RequestState.loading
-            ? const CustomLoadingWidget()
+            ? const CustomLoadingWidget1()
             : Container(
                 width: double.infinity,
                 decoration: const BoxDecoration(

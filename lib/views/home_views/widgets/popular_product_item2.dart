@@ -7,7 +7,6 @@ import 'package:full_store_app/core/utils/app_assets.dart';
 import 'package:full_store_app/core/utils/app_router.dart';
 import 'package:full_store_app/core/utils/app_styles.dart';
 import 'package:full_store_app/data/models/items_model/item.dart';
-import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 
 class PopularProductItem2 extends StatelessWidget {

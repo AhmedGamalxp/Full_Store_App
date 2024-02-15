@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:full_store_app/controllers/forget_pass_otp_controller.dart';
-import 'package:full_store_app/core/shared/loading_widget.dart';
+import 'package:full_store_app/core/shared/custom_loading1.dart';
 import 'package:full_store_app/core/utils/app_styles.dart';
 import 'package:full_store_app/core/utils/request_state.dart';
 import 'package:gap/gap.dart';
@@ -17,7 +17,7 @@ class ResetPassOtpView extends StatelessWidget {
       body: GetBuilder<ForgetPassOtpController>(
         builder: (controller) {
           if (controller.requestState == RequestState.loading) {
-            return CustomLoadingWidget();
+            return const CustomLoadingWidget1();
           } else {
             return Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),

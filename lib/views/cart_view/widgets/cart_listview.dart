@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:full_store_app/controllers/cart_controller.dart';
 import 'package:full_store_app/core/constants.dart';
 import 'package:full_store_app/core/shared/empty_widget.dart';
-import 'package:full_store_app/core/shared/loading_widget.dart';
+import 'package:full_store_app/core/shared/custom_loading1.dart';
 import 'package:full_store_app/core/utils/request_state.dart';
 import 'package:full_store_app/views/cart_view/widgets/cart_listview_item.dart';
 import 'package:gap/gap.dart';
@@ -17,7 +16,7 @@ class CartListView extends StatelessWidget {
     Get.find<CartController>();
     return GetBuilder<CartController>(builder: (controller) {
       if (controller.requestState == RequestState.loading) {
-        return const CustomLoadingWidget();
+        return const CustomLoadingWidget1();
       } else if (controller.requestState == RequestState.failure ||
           controller.myCartList.isEmpty) {
         return const CustomEmptyWidget();

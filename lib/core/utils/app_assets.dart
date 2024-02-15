@@ -70,6 +70,29 @@ class Assets {
   /// assets/icons/User-Icon.svg
   static const String iconsUserIcon = "assets/icons/User-Icon.svg";
 
+  /// Assets for images002DeliveryTruck
+  /// assets/images/002-delivery-truck.png
+  static const String images002DeliveryTruck =
+      "assets/images/002-delivery-truck.png";
+
+  /// Assets for images003CashOnDelivery
+  /// assets/images/003-cash-on-delivery.png
+  static const String images003CashOnDelivery =
+      "assets/images/003-cash-on-delivery.png";
+
+  /// Assets for images005DeliveryMan
+  /// assets/images/005-delivery-man.png
+  static const String images005DeliveryMan =
+      "assets/images/005-delivery-man.png";
+
+  /// Assets for images006Delivery
+  /// assets/images/006-delivery.png
+  static const String images006Delivery = "assets/images/006-delivery.png";
+
+  /// Assets for imagesDrivethru
+  /// assets/images/drivethru.png
+  static const String imagesDrivethru = "assets/images/drivethru.png";
+
   /// Assets for imagesFacebookIcon
   /// assets/images/facebookIcon.svg
   static const String imagesFacebookIcon = "assets/images/facebookIcon.svg";
@@ -105,6 +128,10 @@ class Assets {
   /// Assets for imagesSplash3
   /// assets/images/splash_3.svg
   static const String imagesSplash3 = "assets/images/splash_3.svg";
+
+  /// Assets for lottieCart
+  /// assets/lottie/cart.json
+  static const String lottieCart = "assets/lottie/cart.json";
 
   /// Assets for lottieEmpty
   /// assets/lottie/empty.json

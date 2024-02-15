@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:full_store_app/controllers/myfavorite_controller.dart';
 import 'package:full_store_app/core/constants.dart';
 import 'package:full_store_app/core/shared/empty_widget.dart';
-import 'package:full_store_app/core/shared/loading_widget.dart';
+import 'package:full_store_app/core/shared/custom_loading1.dart';
 import 'package:full_store_app/core/utils/request_state.dart';
 import 'package:full_store_app/data/models/my_favorite/my_favorite.dart';
 import 'package:full_store_app/views/favorite_views/myfavorite_list_item.dart';
@@ -18,7 +18,7 @@ class MyFavoriteViewList extends StatelessWidget {
     return GetBuilder<MyFavoritesController>(
       builder: (controller) {
         if (controller.requestState == RequestState.loading) {
-          return const CustomLoadingWidget();
+          return const CustomLoadingWidget1();
         } else if (controller.requestState == RequestState.failure ||
             controller.myFavorites.isEmpty) {
           return const CustomEmptyWidget();

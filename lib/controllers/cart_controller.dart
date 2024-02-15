@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:full_store_app/core/functions/custom_dialog.dart';
+import 'package:full_store_app/core/utils/app_router.dart';
 import 'package:full_store_app/core/utils/request_state.dart';
 import 'package:full_store_app/data/models/cart_model/cart_model.dart';
 import 'package:full_store_app/data/models/coupon_model/coupon_model.dart';
@@ -13,6 +14,7 @@ class CartController extends GetxController {
   RequestState? requestState;
   MyServices myServices = Get.find<MyServices>();
   String? requestError;
+  String? couponeRquestError;
   List<CartModel> myCartList = [];
   int totalPrice = 0;
   int totalcount = 0;
@@ -21,6 +23,8 @@ class CartController extends GetxController {
   List<CouponModel> myCoupons = [];
   int discount = 0;
   String? couponName;
+  String? couponId;
+  String? couponDiscount = '0';
   addToCart(String itemId) async {
     var resulte = await cartRepo.addToCart(
         userId: myServices.sharedPreferences.getString("id") as String,
@@ -94,7 +98,7 @@ class CartController extends GetxController {
     resulte.fold((failure) {
       discount = 0;
       couponName = null;
-      requestError = 'wrong coupon';
+      couponeRquestError = 'wrong coupon';
     }, (data) {
       for (var item in data['data']) {
         myCoupons.add(CouponModel.fromJson(item));
@@ -103,10 +107,24 @@ class CartController extends GetxController {
         if (item.couponName == couponController.text) {
           discount = item.couponDiscount!;
           couponName = item.couponName;
+          couponId = '${item.couponId}';
+          couponDiscount = item.couponDiscount.toString();
         }
       }
     });
     update();
+  }
+
+  goToCheckOutPage() {
+    if (myCartList.isEmpty) {
+      customDialog(title: 'Error', body: 'Your Cart is empty');
+    } else {
+      Get.toNamed(AppRoute.chechOutView, arguments: {
+        "couponid": couponId ?? '0',
+        'orderprice': '$totalPrice',
+        'coupondiscount': couponDiscount,
+      });
+    }
   }
 
   getTotalPrice() {

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:full_store_app/controllers/home_controller.dart';
-import 'package:full_store_app/core/app_links.dart';
 import 'package:full_store_app/views/home_views/widgets/special_offer_card.dart';
 import 'package:get/get.dart';
 
@@ -13,7 +12,7 @@ class SpecialOfferListView extends StatelessWidget {
     return GetBuilder<HomeController>(
       builder: (controller) {
         return SizedBox(
-          height: (100),
+          height: 110,
           child: ListView.separated(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             itemCount: controller.specialOfferItems.length,
@@ -24,13 +23,14 @@ class SpecialOfferListView extends StatelessWidget {
             },
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
-              return SpecialOfferCard(
-                category:
-                    controller.specialOfferItems[index].itemsName as String,
-                image:
-                    '${AppLinks.imageItemsLink}/${controller.specialOfferItems[index].itemsImage}',
-                numOfbrand:
-                    controller.specialOfferItems[index].itemsCount as int,
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SpecialOfferCard(
+                    ontap: () {},
+                    item: controller.specialOfferItems[index],
+                  ),
+                ],
               );
             },
           ),

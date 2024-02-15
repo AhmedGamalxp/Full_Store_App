@@ -20,7 +20,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    LanguageController languageController = Get.put(LanguageController());
+    LanguageController languageController =
+        Get.put(LanguageController(), permanent: true);
     return GetMaterialApp(
       theme: myTheme,
       locale: languageController.language,
