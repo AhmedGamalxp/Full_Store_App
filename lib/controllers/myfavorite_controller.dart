@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 class MyFavoritesController extends GetxController {
   MyFavoritesRepo myFavoritesRepo = Get.put(MyFavoritesRepo());
   MyServices myServices = Get.find<MyServices>();
-  FavoritesController favoritesController = Get.find<FavoritesController>();
+  FavoritesController favoritesController = Get.put(FavoritesController());
   TextEditingController searchController = TextEditingController();
   List<MyFavoriteModel> myFavorites = [];
   List<MyFavoriteModel> searchItems = [];

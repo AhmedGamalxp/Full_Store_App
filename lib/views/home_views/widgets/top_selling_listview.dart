@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:full_store_app/controllers/home_controller.dart';
-import 'package:full_store_app/views/home_views/widgets/popular_product_item2.dart';
+import 'package:full_store_app/views/home_views/widgets/top_selling_item.dart';
 import 'package:get/get.dart';
 
-class PopularProductsListview extends StatelessWidget {
-  const PopularProductsListview({super.key});
+class TopSellingListview extends StatelessWidget {
+  const TopSellingListview({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,12 +19,12 @@ class PopularProductsListview extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               physics: const BouncingScrollPhysics(),
               itemBuilder: (context, index) {
-                return PopularProductItem2(
-                  item: controller.items[index],
+                return TopSellingItem(
+                  item: controller.topSellingItems[index],
                 );
               },
               separatorBuilder: (context, index) => const SizedBox(width: 10),
-              itemCount: controller.items.length),
+              itemCount: controller.topSellingItems.length),
         );
       },
     );

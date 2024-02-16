@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:full_store_app/core/constants.dart';
 import 'package:full_store_app/core/utils/app_styles.dart';
 import 'package:full_store_app/data/models/cart_model/cart_model.dart';
 

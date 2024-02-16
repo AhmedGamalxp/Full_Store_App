@@ -2,21 +2,22 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:full_store_app/core/app_links.dart';
 import 'package:full_store_app/core/utils/app_assets.dart';
+import 'package:full_store_app/core/utils/app_router.dart';
 import 'package:full_store_app/data/models/items_model/item.dart';
+import 'package:get/get.dart';
 
 class SpecialOfferCard extends StatelessWidget {
   const SpecialOfferCard({
     super.key,
-    this.ontap,
     required this.item,
   });
   final ItemModel item;
 
-  final void Function()? ontap;
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: ontap,
+    return InkWell(
+      onTap: () =>
+          Get.toNamed(AppRoute.productDetailesView, arguments: {"item": item}),
       child: SizedBox(
         height: 100,
         width: 200,

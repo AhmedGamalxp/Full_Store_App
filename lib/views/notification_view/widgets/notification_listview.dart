@@ -4,7 +4,6 @@ import 'package:full_store_app/core/constants.dart';
 import 'package:full_store_app/core/shared/empty_widget.dart';
 import 'package:full_store_app/core/shared/custom_loading1.dart';
 import 'package:full_store_app/core/utils/request_state.dart';
-import 'package:full_store_app/data/models/notification_model/notification_model.dart';
 import 'package:full_store_app/views/notification_view/widgets/notification_listview_item.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';

@@ -27,7 +27,6 @@ class SpecialOfferListView extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SpecialOfferCard(
-                    ontap: () {},
                     item: controller.specialOfferItems[index],
                   ),
                 ],

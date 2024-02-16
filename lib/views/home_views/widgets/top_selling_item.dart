@@ -9,8 +9,8 @@ import 'package:full_store_app/core/utils/app_styles.dart';
 import 'package:full_store_app/data/models/items_model/item.dart';
 import 'package:get/get.dart';
 
-class PopularProductItem2 extends StatelessWidget {
-  const PopularProductItem2({
+class TopSellingItem extends StatelessWidget {
+  const TopSellingItem({
     super.key,
     required this.item,
   });
@@ -98,13 +98,10 @@ class PopularProductItem2 extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Hero(
-                    tag: "${item.itemsId}",
-                    child: CachedNetworkImage(
-                      imageUrl: '${AppLinks.imageItemsLink}/${item.itemsImage}',
-                      errorWidget: (context, url, error) =>
-                          const Icon(Icons.error),
-                    ),
+                  CachedNetworkImage(
+                    imageUrl: '${AppLinks.imageItemsLink}/${item.itemsImage}',
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
                   ),
                   Text(
                     "${item.itemsName}",

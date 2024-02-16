@@ -7,8 +7,10 @@ class CustomBottmNavBar extends StatelessWidget {
   const CustomBottmNavBar({
     super.key,
     this.onTabChange,
+    required this.selectedIndx,
   });
   final Function(int)? onTabChange;
+  final int selectedIndx;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -28,6 +30,7 @@ class CustomBottmNavBar extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(8),
           child: GNav(
+            selectedIndex: selectedIndx,
             tabBackgroundColor: kPrimeryColor.withOpacity(0.2),
             // color: kTextColor,
             activeColor: kPrimeryColor,

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:full_store_app/controllers/address_controller.dart';
+import 'package:full_store_app/controllers/main_view_controller.dart';
 import 'package:full_store_app/core/functions/validate_formfield.dart';
 import 'package:full_store_app/core/shared/custom_botton.dart';
-import 'package:full_store_app/core/utils/request_state.dart';
 import 'package:full_store_app/views/address_views/widgets/address_formfiled.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -12,7 +12,8 @@ class AddAddressForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AddressController addressController = Get.find<AddressController>();
+    AddressController addressController = Get.put(AddressController());
+    MainViewController mainViewController = Get.put(MainViewController());
     return SingleChildScrollView(
       child: Padding(
         padding: EdgeInsets.only(
@@ -61,11 +62,10 @@ class AddAddressForm extends StatelessWidget {
               ),
               const Gap(20),
               CustomBottn(
-                text: addressController.requestState == RequestState.loading
-                    ? '........'
-                    : 'Add Address',
+                text: 'Add Address',
                 onTap: () async {
                   await addressController.addAddress();
+                  mainViewController.onTabChange(0);
                 },
               )
             ],

@@ -10,7 +10,7 @@ import 'package:get/get.dart';
 class CheckOutController extends GetxController {
   String? paymentMethod;
   String? deliveryType;
-  String? addressId = '0';
+  String addressId = '0';
   late String couponId;
   late String couponDiscount;
   late String orderPrice;
@@ -44,13 +44,16 @@ class CheckOutController extends GetxController {
     if (deliveryType == null) {
       return customDialog(title: 'Alert', body: 'Please choose delivery type ');
     }
+    if (addressList.isEmpty) {
+      return customDialog(title: 'Alert', body: 'Please add shipping address');
+    }
     requestState = RequestState.loading;
     update();
     var resulte = await checkOutRepo.checkOut(
       userId: myServices.sharedPreferences.getString("id") as String,
-      addressId: addressId as String,
+      addressId: addressId,
       deliveryType: deliveryType as String,
-      deliveryPrice: '10',
+      deliveryPrice: deliveryType == '0' ? '10' : '0',
       paymentMethod: paymentMethod as String,
       orderPrice: orderPrice,
       couponId: couponId,
@@ -62,7 +65,7 @@ class CheckOutController extends GetxController {
       print(requestError);
       customDialog(title: 'Error', body: failure.erorrMassage);
     }, (data) {
-      Get.offNamed(AppRoute.mainView);
+      Get.offAllNamed(AppRoute.mainView);
       customDialog(title: 'Success', body: 'Check Out Done');
       requestState = RequestState.success;
     });
@@ -80,7 +83,7 @@ class CheckOutController extends GetxController {
     resulte.fold((failure) {
       requestError = failure.erorrMassage;
       requestState = RequestState.failure;
-      customDialog(title: 'Error', body: failure.erorrMassage);
+      // customDialog(title: 'Error', body: failure.erorrMassage);
     }, (data) {
       for (var item in data['data']) {
         addressList.add(AddressModel.fromJson(item));
@@ -92,10 +95,9 @@ class CheckOutController extends GetxController {
 
   @override
   void onInit() {
-    viewAddress();
-    couponId = Get.arguments["couponid"];
-    couponDiscount = Get.arguments["coupondiscount"];
-    orderPrice = Get.arguments["orderprice"];
+    couponId = Get.arguments["couponid"] ?? '0';
+    couponDiscount = Get.arguments["coupondiscount"] ?? '0';
+    orderPrice = Get.arguments["orderprice"] ?? '0';
     super.onInit();
   }
 }

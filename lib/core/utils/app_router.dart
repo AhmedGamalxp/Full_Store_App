@@ -21,7 +21,9 @@ import 'package:full_store_app/views/orders_details_view/orders_details_view.dar
 import 'package:full_store_app/views/orders_view/orders_view.dart';
 import 'package:full_store_app/views/product_detailes/product_detailes_view.dart';
 import 'package:full_store_app/views/profile_view/profile_view.dart';
+import 'package:full_store_app/views/special_offers_view/special_offers_view.dart';
 import 'package:full_store_app/views/splash_view/splash_view.dart';
+import 'package:full_store_app/views/top_selling_view/top_selling_view.dart';
 import 'package:get/get.dart';
 
 class AppRoute {
@@ -37,6 +39,8 @@ class AppRoute {
   static const String homeView = "/homeView";
   static const String mainView = "/mainView";
   static const String itemsView = "/itemsView";
+  static const String specialOffersView = "/specialOffersView";
+  static const String topSellingView = "/topSellingView";
   static const String productDetailesView = "/ProductDetailesView";
   static const String favoriteView = "/FavoriteView";
   static const String profileView = "/ProfileView";
@@ -70,6 +74,9 @@ List<GetPage<dynamic>> myRoutes = [
   GetPage(name: AppRoute.homeView, page: () => const HomeView()),
   GetPage(name: AppRoute.mainView, page: () => const MainView()),
   GetPage(name: AppRoute.itemsView, page: () => const ItemsView()),
+  GetPage(name: AppRoute.topSellingView, page: () => const TopSellingView()),
+  GetPage(
+      name: AppRoute.specialOffersView, page: () => const SpecialOffersView()),
   GetPage(
       name: AppRoute.productDetailesView,
       page: () => const ProductDetailesView()),

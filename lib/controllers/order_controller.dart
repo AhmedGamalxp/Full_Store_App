@@ -66,13 +66,15 @@ class OrderController extends GetxController {
     resulte.fold((failure) {
       requestError = failure.erorrMassage;
     }, (data) {
-      ordersList.removeWhere((element) => '${element.ordersId}' == orderId);
+      pendingList.removeWhere((element) => '${element.ordersId}' == orderId);
     });
     update();
   }
 
   refreshOrdersView() {
     ordersList = [];
+    archivedList = [];
+    pendingList = [];
     viewOrders();
   }
 

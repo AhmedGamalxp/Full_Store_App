@@ -44,7 +44,9 @@ class ProfileList extends StatelessWidget {
             title: 'My Adresses',
             icon: Icons.location_on_outlined,
             ontap: () {
-              Get.toNamed(AppRoute.addressView);
+              Get.toNamed(
+                AppRoute.addressView,
+              );
             },
           ),
           ProfileListItem(

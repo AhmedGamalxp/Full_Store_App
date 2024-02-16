@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:full_store_app/controllers/home_controller.dart';
-import 'package:full_store_app/views/home_views/widgets/popular_product_item2.dart';
+import 'package:full_store_app/views/home_views/widgets/product_item2.dart';
 import 'package:get/get.dart';
 
 class SearchList extends StatelessWidget {
@@ -20,7 +20,7 @@ class SearchList extends StatelessWidget {
           childAspectRatio: 0.7,
         ),
         itemBuilder: (context, index) {
-          return PopularProductItem2(
+          return ProductItem2(
             item: controller.searchItems[index],
           );
         },

@@ -11,15 +11,17 @@ import 'package:get/get.dart';
 class HomeController extends GetxController {
   HomeRepo homeRepo = Get.put(HomeRepo());
   FavoritesController favoritesController = Get.put(FavoritesController());
-  RequestState? requestState;
-  List<CategoryModel> categories = [];
-  List<ItemModel> specialOfferItems = [];
-
-  MyServices myServices = Get.find<MyServices>();
-  List<ItemModel> items = [];
-  List<ItemModel> searchItems = [];
   TextEditingController searchController = TextEditingController();
+  RequestState? requestState;
+  MyServices myServices = Get.find<MyServices>();
   late String requestError;
+
+  List<ItemModel> specialOfferItems = [];
+  List<ItemModel> topSellingItems = [];
+  List<ItemModel> items = [];
+  List<CategoryModel> categories = [];
+  List<ItemModel> searchItems = [];
+
   getAllData() async {
     requestState = RequestState.loading;
     update();
@@ -37,6 +39,9 @@ class HomeController extends GetxController {
       for (var item in data['items']) {
         items.add(ItemModel.fromJson(item));
       }
+      for (var item in data['topselling']) {
+        topSellingItems.add(ItemModel.fromJson(item));
+      }
       for (var item in items) {
         favoritesController.isFavorite['${item.itemsId}'] = '${item.favorite}';
         if (item.itemsDiscount != 0) {
@@ -50,12 +55,17 @@ class HomeController extends GetxController {
 
   void addProductToSearchList({
     required String searchName,
+    required List<ItemModel> items,
   }) {
     searchName.toLowerCase();
     searchItems = items.where((element) {
       String title = element.itemsName!.toLowerCase();
       String price = element.itemsPrice!.toString().toLowerCase();
-      return title.contains(searchName) || price.contains(searchName);
+      String priceAfterDiscount =
+          element.itemsPriceAfterDiscount!.toString().toLowerCase();
+      return title.contains(searchName) ||
+          price.contains(searchName) ||
+          priceAfterDiscount.contains(searchName);
     }).toList();
     update();
   }

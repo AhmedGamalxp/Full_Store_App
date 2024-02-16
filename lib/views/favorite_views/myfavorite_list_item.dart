@@ -4,7 +4,9 @@ import 'package:full_store_app/controllers/myfavorite_controller.dart';
 import 'package:full_store_app/core/app_links.dart';
 import 'package:full_store_app/core/constants.dart';
 import 'package:full_store_app/core/utils/app_assets.dart';
+import 'package:full_store_app/core/utils/app_router.dart';
 import 'package:full_store_app/core/utils/app_styles.dart';
+import 'package:full_store_app/data/models/items_model/item.dart';
 import 'package:full_store_app/data/models/my_favorite/my_favorite.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -12,10 +14,14 @@ import 'package:get/get.dart';
 class MyFavoriteListItem extends GetView<MyFavoritesController> {
   const MyFavoriteListItem({super.key, required this.product});
   final MyFavoriteModel product;
+
   @override
   Widget build(BuildContext context) {
+    final ItemModel item = ItemModel.fromJson(product.toJson());
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Get.toNamed(AppRoute.productDetailesView, arguments: {"item": item});
+      },
       child: Stack(
         children: [
           Container(

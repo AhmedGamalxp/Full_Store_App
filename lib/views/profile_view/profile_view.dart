@@ -20,17 +20,15 @@ class ProfileView extends StatelessWidget {
       },
       child: const Scaffold(
         body: SingleChildScrollView(
-          child: Expanded(
-            child: Padding(
-              padding: EdgeInsets.only(bottom: 70),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  ProfilePicture(),
-                  UserInfo(),
-                  ProfileList(),
-                ],
-              ),
+          child: Padding(
+            padding: EdgeInsets.only(bottom: 70),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                ProfilePicture(),
+                UserInfo(),
+                ProfileList(),
+              ],
             ),
           ),
         ),

@@ -10,5 +10,6 @@ class MyBinding extends Bindings {
     Get.lazyPut(() => SignUpController(), fenix: true);
     Get.put(Dio());
     Get.put(ApiService());
+    // Get.put(MainViewController());
   }
 }

@@ -1,42 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:full_store_app/controllers/items_view_controller.dart';
+import 'package:full_store_app/controllers/home_controller.dart';
 import 'package:full_store_app/core/shared/custom_appbar.dart';
-import 'package:full_store_app/views/items_view/widgets/Categories_list.dart';
 import 'package:full_store_app/views/items_view/widgets/categories_items_list.dart';
 import 'package:get/get.dart';
 
-class ItemsView extends StatelessWidget {
-  const ItemsView({super.key});
+class TopSellingView extends StatelessWidget {
+  const TopSellingView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    ItemsViewController itemsViewController = Get.put(ItemsViewController());
+    HomeController homeController = Get.find();
     return Scaffold(
       body: Stack(
         children: [
           CustomScrollView(
             slivers: [
               const SliverToBoxAdapter(
-                child: SizedBox(height: 120),
+                child: SizedBox(height: 100),
               ),
-              const SliverToBoxAdapter(
-                child: CategoriesList(),
-              ),
-              SliverFillRemaining(child: GetBuilder<ItemsViewController>(
+              SliverFillRemaining(child: GetBuilder<HomeController>(
                 builder: (controller) {
                   return CategoriesItemsList(
                       categoryItems: controller.searchController.text.isNotEmpty
                           ? controller.searchItems
-                          : controller.categoryItems);
+                          : controller.topSellingItems);
                 },
               )),
             ],
           ),
           CustomAppBar(
             back: true,
-            controller: itemsViewController.searchController,
+            controller: homeController.searchController,
             onchange: (value) {
-              itemsViewController.addProductToSearchList(searchName: value);
+              homeController.addProductToSearchList(
+                  searchName: value, items: homeController.topSellingItems);
             },
           ),
         ],

@@ -16,8 +16,14 @@ class ChooseDeliverySection extends StatelessWidget {
         return Row(
           children: [
             ChooseDeliveryItem(
-              onTap: () {
-                controller.chooseDeliveryType('0');
+              onTap: () async {
+                await controller.viewAddress();
+                await controller.chooseDeliveryType('0');
+                if (controller.addressList.isNotEmpty) {
+                  await controller.chooseshippingAddress(
+                    '${controller.addressList[0].adressId}',
+                  );
+                }
               },
               image: Assets.images006Delivery,
               active: controller.deliveryType == '0' ? true : false,
@@ -25,8 +31,8 @@ class ChooseDeliverySection extends StatelessWidget {
             ),
             const Gap(10),
             ChooseDeliveryItem(
-              onTap: () {
-                controller.chooseDeliveryType('1');
+              onTap: () async {
+                await controller.chooseDeliveryType('1');
               },
               image: Assets.imagesDrivethru,
               active: controller.deliveryType == '1' ? true : false,
