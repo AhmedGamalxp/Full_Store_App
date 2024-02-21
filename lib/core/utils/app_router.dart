@@ -1,4 +1,5 @@
 import 'package:full_store_app/core/middleware/mymiddleware.dart';
+import 'package:full_store_app/test.dart';
 import 'package:full_store_app/views/address_views/add_address_view.dart';
 import 'package:full_store_app/views/address_views/address_view.dart';
 import 'package:full_store_app/views/archived_orders_view/archived_orders_view.dart';
@@ -56,12 +57,12 @@ class AppRoute {
 }
 
 List<GetPage<dynamic>> myRoutes = [
-  // GetPage(name: '/', page: () => const MyTest()),
-  GetPage(
-    name: '/',
-    page: () => const LanguageView(),
-    middlewares: [MyMiddlewalre()],
-  ),
+  GetPage(name: '/', page: () => const MyTest()),
+  // GetPage(
+  //   name: '/',
+  //   page: () => const LanguageView(),
+  //   middlewares: [MyMiddlewalre()],
+  // ),
   GetPage(name: AppRoute.splashView, page: () => const SplashView()),
   GetPage(name: AppRoute.loginView, page: () => const LoginView()),
   GetPage(name: AppRoute.signUp, page: () => const SignUp()),

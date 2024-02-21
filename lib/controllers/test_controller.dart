@@ -4,7 +4,7 @@ import 'package:full_store_app/data/repos/auth_repos/test_repo.dart';
 import 'package:get/get.dart';
 
 class TestController extends GetxController {
-  TestRepo testRepo = Get.find();
+  TestRepo testRepo = Get.put(TestRepo());
   RequestState? requestState;
   List myUsers = [];
   late String requestError;

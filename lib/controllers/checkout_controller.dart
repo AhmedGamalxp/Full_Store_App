@@ -44,7 +44,7 @@ class CheckOutController extends GetxController {
     if (deliveryType == null) {
       return customDialog(title: 'Alert', body: 'Please choose delivery type ');
     }
-    if (addressList.isEmpty) {
+    if (addressList.isEmpty && deliveryType == "0") {
       return customDialog(title: 'Alert', body: 'Please add shipping address');
     }
     requestState = RequestState.loading;
